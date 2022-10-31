@@ -1,6 +1,3 @@
-# On the off chance you're reading this message (10/31/22) I am currently editing this readmer and recording some gifs to show examples of what I've done in this project. If you want to see the full extent of what I've done, come back in a few hours, however if you want to get a sneak peek at some of the things I've done, keep reading and refresh often :)
-
-
 I should preface this document by saying all of the assets in here are definitely placeholder assets (as if it wasn't obvious just looking at them haha). I wanted to focus more on the actual technical programming for framework of this project before moving on to the art/look and feel. Most of the art is in a "good enough" state for testing purposes until I find the time to work on the visual side.
 
 Let's start from the beginning - what does the player experience when opening the game?
@@ -10,7 +7,19 @@ https://user-images.githubusercontent.com/72063265/199085986-9c71328b-4571-4c49-
 
 When the player clicks play, the background blurs and a server code box pops up. The game modes run fully on dedicated authoritative servers. The server code is also a for-testing feature until I get full matchmaking up and running with a web api. It's almost there, but I still have to solve a few problems since I'm building from the ground up.
 
-Because the game runs on dedicated servers, everything you see is *fully* replicated. Once the player joins the match, they're (randomly) given one of 4 movement abilities and a couple of weapons.  
+Because the game runs on dedicated servers, everything you see is *fully* replicated. Once the player joins the match, they're (randomly) given one of 4 movement abilities and a couple of weapons - I'll get to that in a minute.
+
+# Juice
+First up is some of the juice I added. I was amazed at how much of a difference in overall game feel some of these things made. During the time I was working on the game, if I didn't have some interesting feature in mind that I wanted to add, I'd move to secondary goals which was usually juice like this. This group of features are not necessary to play the game, but boy do they make it feel much more like an actual game. This list of juicy features includes procedural animations (weapon sway, breathing, walking), match and team chat, killfeed (that will show if the kill was from a headshot or not), obstructable and bilboarded nametags, directional damage indicators, live scoreboard, and a hud (although that might be considered "required" to play the game). Below I have a few short videos demonstrating some of these features.
+
+### Scoreboard + Killfeed:
+https://user-images.githubusercontent.com/72063265/199111014-f8d6dd70-633c-45df-902d-aec4cd847fb7.mp4
+
+### Breathing + Weapon Sway
+https://user-images.githubusercontent.com/72063265/199112228-37289822-7134-494d-8ea3-7e7c6c34460b.mp4
+
+### Directional Damage Indicators
+https://user-images.githubusercontent.com/72063265/199112907-a820d8f2-0971-425b-a8d6-ca89698e4570.mp4
 
 # Abilities
 All of the movement abilities have been added as special enum cases in Unreal's movement replication code to ensure that the replication of these movements is as smooth and efficient as possible.
