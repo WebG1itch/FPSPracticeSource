@@ -22,7 +22,6 @@ https://user-images.githubusercontent.com/72063265/199092949-278ead64-71d5-49ba-
 ## Slide Jump
 The next ability is slide jump. When the player slides, they can optionally jump right at the end of the slide. Doing so will activate the slide jump, which is essentially just a really big jump. This then activates a cooldown, so subsequent jumps will not send you flying through the air until the abilities cooldown has finished.
 
-https://user-images.githubusercontent.com/72063265/199095603-f799ac40-88f7-4a8a-b9b9-154b5f6f8478.mp4
-
+https://user-images.githubusercontent.com/72063265/199095839-42bf45dc-55f2-43fd-86b5-bd402e83c462.mp4
 
 
