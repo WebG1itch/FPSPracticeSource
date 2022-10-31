@@ -12,7 +12,15 @@ When the player clicks play, the background blurs and a server code box pops up.
 
 Because the game runs on dedicated servers, everything you see is *fully* replicated. Once the player joins the match, they're (randomly) given one of 4 movement abilities and a couple of weapons.  
 
+#Abilities
+
+##Grapple
 The first ability is a grapple. This can stick to any surface and will pull you toward it. It works with momentum, so if you want to swing around a corner you absolutely can. The grapple will break if you swing past a certain angle from your start direction (90 degrees right now). The technical side: when you activate the ability, a projectile travels from your camera in the direction you're looking. This projectile sticks to the wall, and acts as a pivot point for your swing. The rope that's attached is currently just a cylinder that gets stretched and rotated along with you. Idealy this will be a particle system instead, but I needed something quick so it looked like an actual grapple rope.
 
 https://user-images.githubusercontent.com/72063265/199092949-278ead64-71d5-49ba-bbbb-bcfedd260aeb.mp4
+
+##Slide Jump
+The next ability is slide jump. When the player slides, they can optionally jump right at the end of the slide. Doing so will activate the slide jump, which is essentially just a really big jump. This then activates a cooldown, so subsequent jumps will not send you flying through the air until the abilities cooldown has finished.
+
+https://user-images.githubusercontent.com/72063265/199094966-11ec84d5-f982-4abe-a882-390dda2edd04.mp4
 
