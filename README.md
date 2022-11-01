@@ -1,5 +1,7 @@
 I should preface this document by saying all of the assets in here are definitely placeholder assets (as if it wasn't obvious just looking at them haha). I wanted to focus more on the actual technical programming for framework of this project before moving on to the art/look and feel. Most of the art is in a "good enough" state for testing purposes until I find the time to work on the visual side.
 
+This project was built in Unreal Engine 5 prioritizing optimization, so almost everything added was done in C++ to keep runtime as fast as possible.
+
 Let's start from the beginning - what does the player experience when opening the game?
 Upon startup, the user is greeted with a main menu level that has a few options along the left (play, practice, settings, and exit) along with their profile in the top left corner. Their character is standing on the right side in one of a few poses with a procedural breathing animation to bring a little bit of life to the screen. There's also music playing in the background but, of course, you can't hear that in the gif.
 
