@@ -24,7 +24,7 @@ https://user-images.githubusercontent.com/72063265/199112228-37289822-7134-494d-
 https://user-images.githubusercontent.com/72063265/199112907-a820d8f2-0971-425b-a8d6-ca89698e4570.mp4
 
 # Abilities
-All of the movement abilities have been added as special enum cases in Unreal's movement replication code to ensure that the replication of these movements is as smooth and efficient as possible.
+Everyone has the passive abilities to wall run and use a physics based slide while on the ground. All of the movement abilities have been added as special enum cases in Unreal's movement replication code to ensure that the replication of these movements is as smooth and efficient as possible. 
 
 ## Grapple
 The first ability is a grapple. This can stick to any surface and will pull you toward it. It works with momentum, so if you want to swing around a corner you absolutely can. The grapple will break if you swing past a certain angle from your start direction (90 degrees right now). The technical side: when you activate the ability, a projectile travels from your camera in the direction you're looking. This projectile sticks to the wall, and acts as a pivot point for your swing. The rope that's attached is currently just a cylinder that gets stretched and rotated along with you. Idealy this will be a particle system instead, but I needed something quick so it looked like an actual grapple rope.
