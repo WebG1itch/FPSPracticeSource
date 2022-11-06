@@ -3,9 +3,13 @@ I should preface this document by saying all of the assets in here are definitel
 This project was built in Unreal Engine 5 prioritizing optimization, so almost everything added was done in C++ to keep runtime as efficient as possible.
 
 ### Sections:
+
 [Intro](#intro)
+
 [Juice](#juice)
+
 [Abilities](#abilities)
+
 [Documentation](#documentation)
 
 # Intro
@@ -55,7 +59,8 @@ Last and, unfortunately, least is the combat stim. I don't even really need a vi
 # Documentation
 With every big project, solo or team based, good documentation is always a good idea. After writing important pieces of code, I made sure to add documentation around the functions and parameters so that it was easy to understand what's happening and where I left off. It had the added bonus of a better IDE workflow, because most modern IDE's will show documentatio of functions and classes (if done correctly) when you try to use them somewhere else. Unreal Engine's source has loads of great examples of well documented code, so I did my best to base my formatting off of that for consistency when working on the project. I've put an example from my custom movement component below
 
-## MovementComponent [From MyCustomMovementComponent.h (Inventive name, I know)](https://github.com/WebG1itch/FPSPracticeSource/blob/main/Source/Impulse/Public/Character/Components/MyCharacterMovementComponent.h)
+## MovementComponent
+### [From MyCustomMovementComponent.h (Inventive name, I know)](https://github.com/WebG1itch/FPSPracticeSource/blob/main/Source/Impulse/Public/Character/Components/MyCharacterMovementComponent.h)
 ```c++
 #pragma region Defaults
 
