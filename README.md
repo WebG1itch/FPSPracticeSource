@@ -1,6 +1,14 @@
 I should preface this document by saying all of the assets in here are definitely placeholder assets (as if it wasn't obvious just looking at them haha). I wanted to focus more on the actual technical programming for framework of this project before moving on to the art/look and feel. Most of the art is in a "good enough" state for testing purposes until I find the time to work on the visual side.
 
-This project was built in Unreal Engine 5 prioritizing optimization, so almost everything added was done in C++ to keep runtime as fast as possible.
+This project was built in Unreal Engine 5 prioritizing optimization, so almost everything added was done in C++ to keep runtime as efficient as possible.
+
+### Sections:
+[Intro](#intro)
+[Juice](#juice)
+[Abilities](#abilities)
+[Documentation](#documentation)
+
+# Intro
 
 Let's start from the beginning - what does the player experience when opening the game?
 Upon startup, the user is greeted with a main menu level that has a few options along the left (play, practice, settings, and exit) along with their profile in the top left corner. Their character is standing on the right side in one of a few poses with a procedural breathing animation to bring a little bit of life to the screen. There's also music playing in the background but, of course, you can't hear that in the gif.
@@ -42,4 +50,92 @@ Third we have the blink. This ability 'dashes' the player in the direction they'
 https://user-images.githubusercontent.com/72063265/199098607-c993b533-828b-40e5-afa2-428ba31d1044.mp4
 
 ## Combat Stimulant
-Last and, unfortunately, least is the combat stim. I don't even really need a video demonstration because there's not much to demonstrate with this one. It was the first ability created to test how the movement replication code works. This ability simply increases the movement speed of the player, and will eventually be paired with visual indicators (like a different running animation, as well as first person effects) to make it clear the player is indeed sprinting with the combat stim. 
+Last and, unfortunately, least is the combat stim. I don't even really need a video demonstration because there's not much to demonstrate with this one. It was the first ability created to test how the movement replication code works. This ability simply increases the movement speed of the player, and will eventually be paired with visual indicators (like a different running animation, as well as first person effects) to make it clear the player is indeed sprinting with the combat stim.
+
+# Documentation
+With every big project, solo or team based, good documentation is always a good idea. After writing important pieces of code, I made sure to add documentation around the functions and parameters so that it was easy to understand what's happening and where I left off. It had the added bonus of a better IDE workflow, because most modern IDE's will show documentatio of functions and classes (if done correctly) when you try to use them somewhere else. Unreal Engine's source has loads of great examples of well documented code, so I did my best to base my formatting off of that for consistency when working on the project. I've put an example from my custom movement component below
+
+## MovementComponent [From MyCustomMovementComponent.h (Inventive name, I know)](https://github.com/WebG1itch/FPSPracticeSource/blob/main/Source/Impulse/Public/Character/Components/MyCharacterMovementComponent.h)
+```c++
+#pragma region Defaults
+
+private:
+	
+	/** The maximum ground speed while running. Also determines maximum lateral speed when falling. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: Grounded", Meta = (AllowPrivateAccess = "true"))
+	float DefaultMaxRunSpeed = 550.0f;
+
+	/** The default maximum acceleration while running. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: Grounded", Meta = (AllowPrivateAccess = "true"))
+	float DefaultMaxRunAcceleration = 10000.0f;
+
+	/**
+	 * Setting that affects movement control. Higher values allow faster changes in direction.
+	 * If bUseSeparateBrakingFriction is false, also affects the ability to stop more quickly when braking (whenever Acceleration is zero), where it is multiplied by BrakingFrictionFactor.
+	 * When braking, this property allows you to control how much friction is applied when moving across the ground, applying an opposing force that scales with current velocity.
+	 * This can be used to simulate slippery surfaces such as ice or oil by changing the value (possibly based on the material pawn is standing on).
+	 * @see BrakingDecelerationWalking, BrakingFriction, bUseSeparateBrakingFriction, BrakingFrictionFactor
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: Grounded", Meta = (AllowPrivateAccess = "true"))
+	float DefaultGroundFriction = 5.f;
+
+	/**
+	 * Deceleration when walking and not applying acceleration. This is a constant opposing force that directly lowers velocity by a constant value.
+	 * @see GroundFriction, MaxAcceleration
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: Grounded", Meta = (AllowPrivateAccess = "true"))
+	float DefaultBrakingDecelerationWalking = 10000.f;
+
+	/**
+	 * Deceleration when walking and not applying acceleration. This is a constant opposing force that directly lowers velocity by a constant value.
+	 * @see GroundFriction, MaxAcceleration
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: InAir", Meta = (AllowPrivateAccess = "true"))
+	float DefaultGravityScale = 1.75f;
+
+	/** Initial velocity (instantaneous vertical acceleration) when jumping. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: InAir", Meta = (AllowPrivateAccess = "true"))
+	float DefaultJumpZVelocity = 550.f;
+
+	/**
+	 * When falling, amount of lateral movement control available to the character.
+	 * 0 = no control, 1 = full control at max speed of MaxWalkSpeed.
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: InAir", Meta = (AllowPrivateAccess = "true"))
+	float DefaultAirControl = 0.2f;
+
+	/**
+	 * When falling, multiplier applied to AirControl when lateral velocity is less than AirControlBoostVelocityThreshold.
+	 * Setting this to zero will disable air control boosting. Final result is clamped at 1.
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: InAir", Meta = (AllowPrivateAccess = "true"))
+	float DefaultAirControlBoostMultiplier = 0.f;
+
+	/**
+	 * When falling, if lateral velocity magnitude is less than this value, AirControl is multiplied by AirControlBoostMultiplier.
+	 * Setting this to zero will disable air control boosting.
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: InAir", Meta = (AllowPrivateAccess = "true"))
+	float DefaultAirControlBoostVelocityThreshold = 0.f;
+
+	/**
+	 * Friction to apply to lateral air movement when falling.
+	 * If bUseSeparateBrakingFriction is false, also affects the ability to stop more quickly when braking (whenever Acceleration is zero).
+	 * @see BrakingFriction, bUseSeparateBrakingFriction
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "My Character Movement|Defaults: InAir", Meta = (AllowPrivateAccess = "true"))
+	float DefaultFallingLateralFriction = 0.1f;
+
+	/** The current maximum ground speed while running. Also determines maximum lateral speed when falling. */
+	float CurrentMaxRunSpeed;
+
+	/** The current maximum acceleration while running. */
+	float CurrentMaxRunAcceleration;
+
+public:
+
+	/** Called on tick to determine if the camera should be tilted during movements. */
+	void CameraTick() const;
+
+#pragma endregion
+```
