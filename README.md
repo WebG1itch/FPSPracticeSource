@@ -140,4 +140,4 @@ public:
 
 #pragma endregion
 ```
-Not every file has documentation as clean as this yet, as I didn't know how big this project would actually get. I've actively been adding new documentation as use and update old files. Honestly, I find the documentation process much more enjoyable than I first thought I would.
+Not every file has documentation as clean as this yet, as I didn't know how big this project would actually get. I've actively been adding new documentation as I use and update old files. Honestly, I find the documentation process much more enjoyable than I first thought I would.
