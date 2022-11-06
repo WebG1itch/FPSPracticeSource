@@ -3,11 +3,10 @@ I should preface this document by saying all of the assets in here are definitel
 This project was built in Unreal Engine 5 prioritizing optimization, so almost everything added was done in C++ to keep runtime as efficient as possible.
 
 ### Sections:
-
-[Intro](#intro)
-[Juice](#juice)
-[Abilities](#abilities)
-[Documentation](#documentation)
+* [Intro](#intro)
+* [Juice](#juice)
+* [Abilities](#abilities)
+* [Documentation](#documentation)
 
 # Intro
 
